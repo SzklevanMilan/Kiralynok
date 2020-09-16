@@ -34,9 +34,16 @@ namespace Kiralynok
         { 
         
         }
-        public void Megjelent()
-        { 
-        
+        public void Megjelenit()
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < 8; j++)
+                {
+                    Console.Write("{0,-2}",T[i,j]);
+                }
+            }
         }
         public int UresOszlop()
         {
@@ -51,12 +58,10 @@ namespace Kiralynok
     {
         static void Main(string[] args)
         {
-
-
-
-
-
-
+            Console.WriteLine("Királynők feladat:");
+            Tabla t = new Tabla('#');
+            Console.WriteLine("Üres tábla: ");
+            t.Megjelenit();
             Console.ReadKey();
         }
     }
