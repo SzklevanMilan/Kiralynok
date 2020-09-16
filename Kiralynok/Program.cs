@@ -8,10 +8,24 @@ namespace Kiralynok
 {
     class Tabla
     {
-         private char[,] tomb= new char[8,8];
+        private char[,] T;
         private char Urescella;
         private int UresOszlopokSzama;
         private int UresSorokSzama;
+        public Tabla(char ch)
+        {
+            T = new char[8, 8];
+            Urescella = ch;
+            int s = 8;
+            int o = 8;
+            for (int i = 0; i < s; i++)
+            {
+                for (int j = 0; j < o; j++)
+                {
+                    T[i,j] = Urescella;
+                }
+            }
+        }
         public void Elhelyez()
         { 
         
@@ -24,17 +38,13 @@ namespace Kiralynok
         { 
         
         }
-        public Tabla(char ch)
-        { 
-        
-        }
         public int UresOszlop()
-        { 
-        
+        {
+            return 0;
         }
         public int UresSor()
         {
-            
+            return 0; 
         }
     }
     class Program
