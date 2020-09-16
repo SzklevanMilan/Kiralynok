@@ -1,5 +1,6 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,6 +80,11 @@ namespace Kiralynok
             t.Elhelyez(1);
             Console.WriteLine();
             Console.WriteLine("Királynő elhelyezése:");
+            t.Megjelenit();
+            Console.WriteLine();
+            t.Elhelyez(1);
+            Console.WriteLine();
+            Console.WriteLine("Véletlen darab királynő elhelyezése: ");
             t.Megjelenit();
             Console.ReadKey();
         }
