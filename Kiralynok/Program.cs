@@ -63,13 +63,16 @@ namespace Kiralynok
                 }
             }
         }
-        public int UresOszlop()
+        public bool UresOszlop(int oszlop)
         {
-            return 0;
+            //üres-e a sor
+            //1 ciklus,a soron végig
+            // ha T[sor,i] meg T[i,oszlop]
+            return true;
         }
-        public int UresSor()
+        public bool UresSor(int sor)
         {
-            return 0; 
+            return false; 
         }
     }
     class Program
@@ -91,6 +94,7 @@ namespace Kiralynok
             Console.WriteLine();
             Console.WriteLine("Véletlen darab királynő elhelyezése: ");
             t.Megjelenit();
+
             Console.ReadKey();
         }
     }
