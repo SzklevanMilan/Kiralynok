@@ -35,12 +35,15 @@ namespace Kiralynok
             //  - elhelyezzük a "K"-t csak akkor
             //              HA!!!!! üres -> "#"
 
-            Random vel = new Random();
-            int sor = vel.Next(0, 8);
-            int oszlop = vel.Next(0, 8);
-            if (T[sor,oszlop] == '#')
+             Random vel = new Random();
+            for (int i = 0; i < vel.Next(0,65); i++)
             {
-                T[sor, oszlop] = 'K';
+                int sor = vel.Next(0, 8);
+                int oszlop = vel.Next(0, 8);
+                if (T[sor, oszlop] == '#')
+                {
+                    T[sor, oszlop] = 'K';
+                }
             }
         }
         public void FajlbaIr()
