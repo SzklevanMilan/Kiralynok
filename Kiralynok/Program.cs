@@ -87,7 +87,7 @@ namespace Kiralynok
             Console.WriteLine("Királynő elhelyezése:");
             t.Megjelenit();
             Console.WriteLine();
-            t.Elhelyez(8);
+            t.Elhelyez(7);
             Console.WriteLine();
             Console.WriteLine("Véletlen darab királynő elhelyezése: ");
             t.Megjelenit();
