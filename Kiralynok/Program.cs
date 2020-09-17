@@ -36,14 +36,16 @@ namespace Kiralynok
             //              HA!!!!! üres -> "#"
 
              Random vel = new Random();
-            for (int i = 0; i < vel.Next(0,65); i++)
+            for (int i = 0; i < N; i++)
             {
                 int sor = vel.Next(0, 8);
                 int oszlop = vel.Next(0, 8);
-                if (T[sor, oszlop] == '#')
-                {
-                    T[sor, oszlop] = 'K';
-                }
+                while (T[sor, oszlop] == 'K')
+	            {
+                   sor = vel.Next(0, 8);
+                   oszlop = vel.Next(0, 8); 
+	            }
+                T[sor,oszlop] = 'K';
             }
         }
         public void FajlbaIr()
@@ -85,7 +87,7 @@ namespace Kiralynok
             Console.WriteLine("Királynő elhelyezése:");
             t.Megjelenit();
             Console.WriteLine();
-            t.Elhelyez(1);
+            t.Elhelyez(8);
             Console.WriteLine();
             Console.WriteLine("Véletlen darab királynő elhelyezése: ");
             t.Megjelenit();
