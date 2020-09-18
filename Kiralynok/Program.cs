@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Kiralyno
 {
     class Tabla
     {
-        char[,] T;
+        char[,] T;//Tömb
         char UresCella;
         int UresOszlopokSzama;
         int UresSorokSzama;
@@ -43,9 +44,18 @@ namespace Kiralyno
                 T[sor, oszlop] = 'K';
             }
         }
-        public void FajlbaIr()
+        public void FajlbaIr(StreamWriter fajl)
         {
-
+            //fajl.WriteLine("Ez egy szöveg.");
+            for (int i = 0; i < 8; i++)
+            {
+                string sor = "";
+                for (int j = 0; j < 8; j++)
+                {
+                    sor += T[i, j];
+                }
+                fajl.WriteLine(sor);
+            }
         }
         public void Megjelenit()
         {
@@ -65,6 +75,24 @@ namespace Kiralyno
             /*1 ciklus, a soron végig
              * ha T[sor[i] meg T[i, oszlop]
              * */
+            //Ez is jó!!!!!
+            
+              /*int i = 0;
+            while (i<8 && T[i,oszlop]!='K')
+            {
+                i++;
+            }
+            if (i<8)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }*/
+            
+
+
             bool k = true;
             for (int i = 0; i < 8; i++)
             {
@@ -73,36 +101,35 @@ namespace Kiralyno
                     k = false;
                 }
             }
-            if (k == false)
-            {
-                Console.WriteLine("Van királynő az oszlopban");
-            }
-            else
-            {
-                Console.WriteLine("Nincs Királynő az oszlopban");
-            }
             return k;
-        }
+       }
+
         public bool UresSor(int sor)
         {
-            bool k = true;
-            for (int i = 0; i < 8; i++)
-            {
-                if (T[i, sor] == 'K')
+                bool k = true;
+                for (int i = 0; i < 8; i++)
                 {
-                    k = false;
+                    if (T[i, sor] == 'K')
+                    {
+                        k = false;
+                    }
                 }
+                return k;
+                //Ez is jó!!
+                /*int i = 0;
+                while (i < 8 && T[sor, i] != 'K')
+                {
+                    i++;
+                }
+                if (i < 8)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }*/
             }
-            if (k == true)
-            {
-                Console.WriteLine("Van királynő a sorban");
-            }
-            else
-            {
-                Console.WriteLine("Nincs Királynő a sorban");
-            }
-            return k;
-        }
     }
 
     class Program
@@ -112,6 +139,8 @@ namespace Kiralyno
             Console.WriteLine("Királynők feladat:");
             Console.WriteLine();
             Tabla t = new Tabla('#');
+            Tabla[] tablak = new Tabla[64];
+
             Console.WriteLine("Üres tábla: ");
             t.Megjelenit();
             Console.WriteLine();
@@ -124,8 +153,66 @@ namespace Kiralyno
             Console.WriteLine();
             Console.WriteLine("Véletlen darab királynő elhelyezése: ");
             t.Megjelenit();
-        t.UresOszlop(3);
-        t.UresSor(5);
+            Console.WriteLine();
+            Console.WriteLine("Melyik sor: ");
+            int sor = int.Parse(Console.ReadLine());
+
+            if (t.UresSor(sor))
+            {
+                Console.WriteLine("A megadott sor nem üres.");
+            }
+            else
+            {
+                Console.WriteLine("A megadott sor üres.");
+            }
+            t.UresSor(5);
+            Console.WriteLine("Melyik oszlop: ");
+            int oszlop = int.Parse(Console.ReadLine());
+
+            if (t.UresSor(oszlop))
+            {
+                Console.WriteLine("A megadott oszlop nem üres.");
+            }
+            else
+            {
+                Console.WriteLine("A megadott oszlop üres.");
+            }
+            t.UresOszlop(3);
+            Console.WriteLine();
+
+            Console.WriteLine("8.feladat: Az üres oszlopok és sorok száma:");
+            int UresSor = 0;
+            int UresOszlop = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                if (t.UresOszlop(i) == true)
+                {
+                    UresOszlop++;
+                }
+                if (t.UresSor(i) == true)
+                {
+                    UresSor++;
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Üres sorok száma: {0}.",UresSor);
+            Console.WriteLine("Üres oszlopok száma: {0}.",UresOszlop);
+            Console.WriteLine();
+
+            StreamWriter ki = new StreamWriter("adatok.txt");
+            for (int i = 0; i < 64; i++)
+            {
+                tablak[i] = new Tabla('*');
+            }
+
+                for (int i = 0; i < 64; i++)
+                {
+                    tablak[i].Elhelyez(i + 1);
+                    tablak[i].FajlbaIr(ki);
+                    ki.WriteLine();
+                }
+            ki.Close();
 
             Console.ReadKey();
         }
